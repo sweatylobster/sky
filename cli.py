@@ -95,8 +95,8 @@ class CLITool:
     def execute(
         self,
         choices: Union[Sequence[Any], Iterable[Any], Iterator[Any]],
-        subcommand=None,
         *args: CLIOptions,
+        subcommand=None,
         delimiter: str = "\n",
         encoding="utf-8",
         **kwargs: Any,
@@ -132,7 +132,12 @@ class CLITool:
             pass
         stdout, _ = command_process.communicate()
         if stdout != "":
-            return stdout
+            results = stdout.split('\n')
+            results.remove('')
+            if len(results) == 1:
+                return results[0]
+            else:
+                return results
         else:
             return None
 

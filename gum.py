@@ -1,4 +1,4 @@
-from cli import CLITool
+from cli import CLITool, wraps
 
 
 class GumPrompt(CLITool):
@@ -50,4 +50,11 @@ class GumPrompt(CLITool):
 
 gum = GumPrompt()
 # print(gum)
-print(gum.filter([x for x in range(10)], header="WTF this is awesome"))
+numbers = [x for x in range(1, 11)]
+choice = gum.filter(numbers, "no-limit", header="CHOOSE A NUMBER FOOL")
+print(type(choice))
+print(choice.__repr__())
+print(choice)
+
+if choice == "5":
+    print("2+2 got you here, didn't it?")
